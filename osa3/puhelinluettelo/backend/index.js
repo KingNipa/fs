@@ -2,6 +2,9 @@ const express = require('express')
 const morgan = require('morgan')
 const app = express()
 
+const cors = require('cors')
+app.use(cors())
+
 //morgan on tehtavaa 3.7:
 app.use(express.json())
 app.use(morgan('tiny'))
