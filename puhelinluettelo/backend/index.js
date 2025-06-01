@@ -9,7 +9,7 @@ app.use(cors())
 app.use(express.json())
 app.use(morgan('tiny'))
 
-const persons = [
+let persons = [
   { name: 'Arto Hellas',       number: '040-123456',      id: 1 },
   { name: 'Ada Lovelace',      number: '39-44-5323523',   id: 2 },
   { name: 'Dan Abramov',       number: '12-43-234345',    id: 3 },
@@ -69,7 +69,7 @@ app.post('/api/persons', (request, response) => {
     return response.status(204).json({ error: 'nimen täytyy olla uniikki' })
   }
 
-  const id = Math.floor(Math.random() * max)
+  const id = Math.floor(Math.random() * 999)
   const newPerson = {
     id: id,
     name: body.name,
