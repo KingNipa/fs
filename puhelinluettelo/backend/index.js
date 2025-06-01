@@ -2,9 +2,13 @@ const express = require('express')
 const morgan = require('morgan')
 const app = express()
 
-const cors = require('cors')
-app.use(cors())
+const path = require('path')
 
+const cors = require('cors')
+
+
+app.use(express.static(path.join(__dirname, 'build')))
+app.use(cors())
 //morgan on tehtavaa 3.7:
 app.use(express.json())
 app.use(morgan('tiny'))
