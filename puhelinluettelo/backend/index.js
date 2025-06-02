@@ -13,6 +13,7 @@ app.use(cors())
 app.use(express.json())
 app.use(morgan('tiny'))
 
+
 let persons = [
   { name: 'Arto Hellas',       number: '040-123456',      id: 1 },
   { name: 'Ada Lovelace',      number: '39-44-5323523',   id: 2 },
@@ -22,9 +23,9 @@ let persons = [
 ]
 
 //tehtava 3.1:
-app.get('/api/persons', (req, res) => {
+app.get('/api/persons', (request, response) => {
   console.log('Homma toimii')
-  res.json(persons)
+  response.json(persons)
 })
 
 //Tehtava 3.2:
@@ -83,6 +84,11 @@ app.post('/api/persons', (request, response) => {
   persons = persons.concat(newPerson)
   response.json(newPerson)
 })
+
+app.get('*', (request, response) => {
+  response.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
 
 
 // 3.9
