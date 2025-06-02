@@ -2,14 +2,19 @@ const express = require('express')
 const morgan = require('morgan')
 const app = express()
 
-const cors = require('cors')
-app.use(cors())
+const path = require('path')
 
+const cors = require('cors')
+
+
+app.use(express.static(path.join(__dirname, 'build')))
+app.use(cors())
 //morgan on tehtavaa 3.7:
 app.use(express.json())
 app.use(morgan('tiny'))
 
-const persons = [
+
+let persons = [
   { name: 'Arto Hellas',       number: '040-123456',      id: 1 },
   { name: 'Ada Lovelace',      number: '39-44-5323523',   id: 2 },
   { name: 'Dan Abramov',       number: '12-43-234345',    id: 3 },
@@ -18,9 +23,9 @@ const persons = [
 ]
 
 //tehtava 3.1:
-app.get('/api/persons', (req, res) => {
+app.get('/api/persons', (request, response) => {
   console.log('Homma toimii')
-  res.json(persons)
+  response.json(persons)
 })
 
 //Tehtava 3.2:
@@ -69,7 +74,7 @@ app.post('/api/persons', (request, response) => {
     return response.status(204).json({ error: 'nimen täytyy olla uniikki' })
   }
 
-  const id = Math.floor(Math.random() * max)
+  const id = Math.floor(Math.random() * 999)
   const newPerson = {
     id: id,
     name: body.name,
@@ -79,6 +84,11 @@ app.post('/api/persons', (request, response) => {
   persons = persons.concat(newPerson)
   response.json(newPerson)
 })
+
+app.get('*', (request, response) => {
+  response.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
 
 
 // 3.9
