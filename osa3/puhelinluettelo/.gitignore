@@ -5,3 +5,5 @@ puhelinluettelo/frontend/dist/
 
 puhelinluettelo/backend/node_modules/
 puhelinluettelo/frontend/node_modules/
+
+.env
