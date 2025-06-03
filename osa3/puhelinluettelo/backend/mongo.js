@@ -5,10 +5,10 @@ if (process.argv.length < 3) {
   console.log('give password as argument')
   process.exit(1)
 }
+//Tätä ei tarvita enää
+//const password = process.argv[2]
 
-const password = process.argv[2]
-
-const uri = `mongodb+srv://Nipa:MongoSala99!@cluster0.qys71et.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+const uri = 'mongodb+srv://Nipa:MongoSala99!@cluster0.qys71et.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 
 
 mongoose.connect(uri)
